@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Żyroskop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .info {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dane z żyroskopu urządzenia</h1>
+    <div class="info">Alfa: <span id="alpha"></span></div>
+    <div class="info">Beta: <span id="beta"></span></div>
+    <div class="info">Gamma: <span id="gamma"></span></div>
+
+    <script>
+        if (window.DeviceOrientationEvent) {
+            window.addEventListener("deviceorientation", function(event) {
+                document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
+                document.getElementById("beta").innerHTML = event.beta.toFixed(2);
+                document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
+            }, false);
+        } else {
+            alert("Przykro mi, ale twoje urządzenie nie obsługuje żyroskopu.");
+        }
+    </script>
+</body>
+</html>
