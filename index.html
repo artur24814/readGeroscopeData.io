@@ -46,7 +46,10 @@
         });
         
         camera_button.addEventListener('click', async function() {
-            camera_stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            camera_stream = await navigator.mediaDevices.getUserMedia({ 
+                video: {
+                facingMode: 'environment'
+                }, audio: true });
             video.srcObject = camera_stream;
         });
 
