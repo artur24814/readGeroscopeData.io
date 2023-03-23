@@ -19,17 +19,33 @@
     <div class="info">Alfa: <span id="alpha"></span></div>
     <div class="info">Beta: <span id="beta"></span></div>
     <div class="info">Gamma: <span id="gamma"></span></div>
+    
+    <button id='start'>start</button> 
 
     <script>
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener("deviceorientation", function(event) {
+        let btn = document.querySelector('#start')
+
+        btn.addEventListener('click', requestDeviceOrientation) 
+        
+        function requestDeviceOrientation () {
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+          DeviceOrientationEvent.requestPermission()
+          .then(permissionState => {
+          if (permissionState === 'granted') {
+          window.addEventListener("deviceorientation", function(event) {
                 document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
                 document.getElementById("beta").innerHTML = event.beta.toFixed(2);
                 document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
             }, false);
-        } else {
-            alert("Przykro mi, ale twoje urządzenie nie obsługuje żyroskopu.");
+          }
+          })
+          .catch(console.error);
+          } else {
+          // handle regular non iOS 13+ devices
+          console.log ("not iOS");
+          }
         }
+        
     </script>
 </body>
 </html>
