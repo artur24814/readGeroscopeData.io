@@ -38,7 +38,7 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
         document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
         document.getElementById("beta").innerHTML = event.beta.toFixed(2);
         document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
-        renderSurface(Number(event.gamma.toFixed(2)), Number(event.beta.toFixed(2)))
+        renderSurface(event.gamma.toFixed(2), event.beta.toFixed(2))
     }, false);
   }
   })
@@ -112,4 +112,4 @@ function renderSurface (gama, beta) {
 
 ctx.fillStyle = "gray";
 ctx.fillRect(0, 0, 300, 400);
-renderSurface(60, 60)
+// renderSurface(60, 60)
