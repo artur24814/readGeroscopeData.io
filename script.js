@@ -48,6 +48,7 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
         document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
         document.getElementById("beta").innerHTML = event.beta.toFixed(2);
         document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
+        renderSurface(event.gamma.toFixed(2), event.beta.toFixed(2))
     }, false);
   console.log ("not iOS");
   }
@@ -72,8 +73,6 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
 
 // Get the canvas element from the DOM
 const canvas = document.getElementById('scene');
-
-let scene_body = document.querySelector('.scene-body')
 
 // Get the canvas dimensions
 let width = canvas.width; // Width of the scene
@@ -107,9 +106,10 @@ window.addEventListener('resize', onResize);
 onResize();
 
 function renderSurface (gama, beta) {
+    let scene_body = document.querySelector('.scene-body')
     scene_body.style.transform = 'rotateY(' + (90 - gama) + 'deg) rotateX(' + (90 - beta) + 'deg)';
 }
 
 ctx.fillStyle = "gray";
-ctx.fillRect(0, 0, 300, 400);
+ctx.fillRect(30, 0, width, height);
 // renderSurface(60, 60)
