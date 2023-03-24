@@ -38,7 +38,7 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
         document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
         document.getElementById("beta").innerHTML = event.beta.toFixed(2);
         document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
-        renderSurface(25, 25, 300, event.gamma.toFixed(2))
+        renderSurface(25, 25, 300, Number(event.beta.toFixed(2)))
     }, false);
   }
   })
@@ -105,8 +105,8 @@ window.addEventListener('resize', onResize);
 onResize();
 
 function renderSurface (x, y, w_s, h_s ) {
-    y_pos = (height - h_s) - h_s
-    ctx.fillRect(x, y_pos, w_s, h_s);
+    y_pos = height - h_s
+    ctx.fillRect(x, y_pos, width, h_s * 10);
 }
 
-renderSurface(25, 25, 300, 100)
+// renderSurface(20, 400, 300, -0.2)
