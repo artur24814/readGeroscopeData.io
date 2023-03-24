@@ -38,7 +38,7 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
         document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
         document.getElementById("beta").innerHTML = event.beta.toFixed(2);
         document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
-        renderSurface(event.gamma.toFixed(2), event.beta.toFixed(2))
+        renderSurface(event.alpha.toFixed(2), event.gamma.toFixed(2), event.beta.toFixed(2))
     }, false);
   }
   })
@@ -48,7 +48,7 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
         document.getElementById("alpha").innerHTML = event.alpha.toFixed(2);
         document.getElementById("beta").innerHTML = event.beta.toFixed(2);
         document.getElementById("gamma").innerHTML = event.gamma.toFixed(2);
-        renderSurface(event.gamma.toFixed(2), event.beta.toFixed(2))
+        renderSurface(event.alpha.toFixed(2),event.gamma.toFixed(2), event.beta.toFixed(2))
     }, false);
   console.log ("not iOS");
   }
@@ -105,11 +105,24 @@ window.addEventListener('resize', onResize);
 // Make sure the canvas size is perfect
 onResize();
 
-function renderSurface (gama, beta) {
+function renderSurface (alpha, gama, beta) {
     let scene_body = document.querySelector('.scene-body')
-    scene_body.style.transform = 'rotateY(' + (90 - gama) + 'deg) rotateX(' + (90 - beta) + 'deg)';
+    scene_body.style.transform = 'rotateZ(' + alpha + 'deg) rotateY(' + gama + 'deg) rotateX(' + beta + 'deg)';
 }
 
-ctx.fillStyle = "gray";
-ctx.fillRect(30, 0, width, height);
-// renderSurface(60, 60)
+function drawCanvas() {
+    ctx.fillStyle = "gray";
+    ctx.fillRect(20, 0, height, width);
+    ctx.beginPath();
+    ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // Outer circle
+    ctx.moveTo(110, 75);
+    ctx.arc(75, 75, 35, 0, Math.PI, false); // Mouth (clockwise)
+    ctx.moveTo(65, 65);
+    ctx.arc(60, 65, 5, 0, Math.PI * 2, true); // Left eye
+    ctx.moveTo(95, 65);
+    ctx.arc(90, 65, 5, 0, Math.PI * 2, true); // Right eye
+    ctx.stroke();
+    
+}
+
+drawCanvas()
