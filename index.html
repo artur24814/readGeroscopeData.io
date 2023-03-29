@@ -43,7 +43,13 @@
                             <div class="info">Gamma: <span id="gamma"></span></div>
                         </div>
                         <div class="scene-body d-flex align-items-end">
-                            <canvas id="scene"></canvas>
+                            <div class="back">
+                                <p>BACK</p>
+                            </div>
+                            <div class="front">
+                                <p>FRONT</p>
+                            </div>
+                            
                         </div>                        
                     </div>   
                 </div>
@@ -56,23 +62,13 @@
                             <video id="video" autoplay></video>
                             <canvas class="d-none"></canvas>
                         
-                            <!-- <div class="video-options">
-                                <select name="" id="" class="custom-select">
-                                    <option value="">Select camera</option>
-                                </select>
-                            </div> -->
-                        
                             <img class="screenshot-image d-none" alt="">
                         
                             <div class="controls">
                                 <button class="btn btn-danger play" id='start-camera'><i class="bi bi-play-fill" style="color: red;"></i></button>
-                                <!-- <video id="video" width="320" height="240" autoplay></video> -->
                                 <button class="btn btn-info d-none" id="start-record"><i class="bi bi-record-circle-fill"></i></button>
                                 <button class="btn btn-info pause d-none" id="stop-record"><i class="bi bi-stop-fill"></i></button>
                                 <button class="btn btn-outline-success download-btn d-none" title="ScreenShot"><a id="download-video" download="test.webm"><i class="bi bi-download"></i></a></button>
-                                <!-- <button class="btn btn-danger play" title="Play"><i class="bi bi-play-fill" style="color: red;"></i></button>
-                                <button class="btn btn-info pause d-none" title="Pause"><i data-feather="pause"></i></button>
-                                <button class="btn btn-outline-success screenshot d-none" title="ScreenShot"><i data-feather="image"></i></button> -->
                             </div>
                         </div>
                     </div>

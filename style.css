@@ -103,11 +103,39 @@ video {
 .controls > button:hover svg {
     color: white;
 }
-#scene {
-    max-width:410px;
-    height:300px;
-}
 .scene-body {
     min-width: 100%;
+    min-height: 100%;
     height:320px;
+    position: relative;
+    border-radius: 1px;
+    backface-visibility: hidden;
+    animation: shake 0.35s ease-in-out;
+ }
+
+ .back,.front {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+.front {
+    background: #d0d5d0;
+    background-image: url("img/monkey-selfie.jpg");
+    background-size: cover;
+    color: #253824;
+    text-align: right;
+    font-size: 30px;
+    letter-spacing: 6px;
+}
+
+.back {
+    background: #ebf3e7;
+    transform: scale3d(-1,1,1);
+    background-image: url("img/image.jpg");
+    background-size: cover;
+    font-size: 30px;
+    color: #e32716;
+    font-size: 2em;
+    float: bottom;
 }
