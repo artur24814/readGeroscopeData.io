@@ -71,5 +71,5 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
 
 function renderSurface (alpha, gama, beta) {
     let scene_body = document.querySelector('.scene-body')
-    scene_body.style.transform = 'rotateZ(' + alpha + 'deg) rotateY(' + gama + 'deg) rotateX(' + beta + 'deg)';
+    scene_body.style.transform = 'rotateZ(' + alpha + 'deg) rotateY(' + gama + 'deg) rotateX(' + (90 - beta) + 'deg)';
 }
