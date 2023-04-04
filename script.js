@@ -55,6 +55,16 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
      // set MIME type of recording as video/webm
     media_recorder = new MediaRecorder(camera_stream, { mimeType: 'video/webm' });
     // event : new recorded video blob available 
+    const fullscreenElement =
+    document.fullscreenElement ||
+    document.mozFullScreenElement ||
+    document.webkitFullscreenElement ||
+    document.msFullscreenElement;
+    if (fullscreenElement) {
+        exitFullscreen();
+    } else {
+        launchIntoFullscreen(document.querySelector('.display-cover'));
+    }
     media_recorder.addEventListener('dataavailable', function(e) {
         blobs_recorded.push(e.data);
     });
@@ -70,6 +80,20 @@ if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEve
 }
 
 function renderSurface (alpha, gama, beta) {
-    let scene_body = document.querySelector('.scene-body')
+    let scene_body = document.querySelector('#surface')
     scene_body.style.transform = 'rotateZ(' + alpha + 'deg) rotateY(' + gama + 'deg) rotateX(' + beta + 'deg)';
 }
+
+function launchIntoFullscreen(element) {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+      element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+      element.msRequestFullscreen();
+    } else {
+      element.classList.toggle('fullscreen');
+    }
+  }
